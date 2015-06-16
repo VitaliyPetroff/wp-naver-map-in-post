@@ -1,0 +1,54 @@
+<script type="text/javascript" src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=__INPUT__APIKEY"></script>
+<script type="text/javascript" src="__INPUT__PLUGINPATH/wp-naver-map-in-post/conv_loc/lib/geocent.js"></script>
+<script type="text/javascript" src="__INPUT__PLUGINPATH/wp-naver-map-in-post/conv_loc/lib/tmerc.js"></script>
+<script type="text/javascript" src="__INPUT__PLUGINPATH/wp-naver-map-in-post/conv_loc/lib/cscs.js"></script>
+<SCRIPT type="text/javascript" src="__INPUT__PLUGINPATH/wp-naver-map-in-post/conv_loc/lib/defs/GOOGLE_WGS84.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="__INPUT__PLUGINPATH/wp-naver-map-in-post/conv_loc/lib/defs/TM128_katech_3param.js"></SCRIPT>
+
+<p style="margin-left:15px; font-size:0.9em"><b>__INPUT__TITLE 지도</b></p>
+<p id="alghostMap" style="border:1px solid #000; max-width:400px; height:300px; margin:15px;">
+</p>
+<p style="margin-left:15px; font-size:0.75em;"><a id="alghostMobileLink">네이버지도앱으로 연결</a></p>
+<script type="text/javascript">
+    var TM128 = new CS(csList.TM128_katech_3param);
+    var WGS84 = new CS(csList.GOOGLE_WGS84);
+    var convPtr = new PT(__INPUT__X, __INPUT__Y);
+    cs_transform(TM128, WGS84, convPtr);
+    var objCenterPtr = new nhn.api.map.LatLng(convPtr.y, convPtr.x);
+    var defaultLevel = 11;
+    var objMap = new nhn.api.map.Map(document.getElementById("alghostMap"), {
+        point: objCenterPtr,
+        zoom: defaultLevel,
+        enableWheelZoom: true,
+        enableDragPan: true,
+        enableDblClickZoom: false,
+        mapMode: 0,
+        activateTrafficMap: false,
+        activateBicycleMap: false,
+        minMaxLevel: [1,14],
+        size: new nhn.api.map.Size(300, 300)
+    });
+    
+    var infoWindow = new nhn.api.map.InfoWindow();
+    objMap.addOverlay(infoWindow);
+    var objMapSlider = new nhn.api.map.ZoomControl();
+    objMap.addControl(objMapSlider);
+    objMapSlider.setPosition({
+        top: 10,
+        left: 10
+    });
+    var objIconSize = new nhn.api.map.Size(28, 37);
+    var objIconOffset = new nhn.api.map.Size(14,37);
+    var objMarkerIcon = new nhn.api.map.Icon("http://static.naver.com/maps2/icons/pin_spot2.png", objIconSize, objIconOffset);
+    var objMarker = new nhn.api.map.Marker(objMarkerIcon, {title: "__INPUT__TITLE"});
+    objMarker.setPoint(objCenterPtr);
+    objMap.addOverlay(objMarker);
+
+    var objMarkerLabel = new nhn.api.map.MarkerLabel();
+    objMap.addOverlay(objMarkerLabel);
+    objMarkerLabel.setVisible(true, objMarker);
+
+    var mobile_url = "navermaps://?menu=location&lat="+convPtr.y+"&lng="+convPtr.x+"&title=__INPUT__TITLE&mLevel=11";
+    document.getElementById("alghostMobileLink").href = mobile_url;
+
+</script>

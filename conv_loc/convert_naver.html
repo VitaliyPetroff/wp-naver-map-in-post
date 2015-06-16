@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>Example of Google(WGS84),Naver(TM128 katech) map coordinator converting</title>
+<script type="text/javascript" src="lib/geocent.js"></script>
+<script type="text/javascript" src="lib/tmerc.js"></script>
+<script type="text/javascript" src="lib/cscs.js"></script>
+<SCRIPT type="text/javascript" src="lib/defs/GOOGLE_WGS84.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="lib/defs/TM128_katech_3param.js"></SCRIPT>
+<!--
+<SCRIPT type="text/javascript" src="lib/defs/TM128_katech_7param.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="lib/defs/UTM_K.js"></SCRIPT>
+-->
+<script type="text/javascript">
+
+// Define Coordinate system
+var TM128_naver = new CS(csList.TM128_katech_3param);
+var WGS84_google = new CS(csList.GOOGLE_WGS84);
+
+// GOOGLE_WGS84 -> TM128_katech_3param(Naver map) test
+var longitude = 128.;
+var latitude = 38.;
+document.write("Google Map/Earth WGS84 - longitude:"+longitude+" latitude:"+latitude+"<br>");
+var p = new PT(longitude, latitude);
+cs_transform(WGS84_google,TM128_naver, p);
+document.write("-> Naver Map TM128 katech - X(E):"+p.x+" Y(N):"+p.y+"<br><br>");
+
+// TM128_katech_3param(naver map) -> GOOGLE_WGS84 test
+var Xe = 400000.
+var Yn = 600000.
+document.write("Naver Map TM128 katech - X(E):"+Xe+" Y(N):"+Yn+"<br>");
+var p2 = new PT(Xe,Yn); //(X_east,Y_north)
+cs_transform(TM128_naver, WGS84_google, p2);
+document.write("-> Google Map/Earth WGS84 - longitude:"+p2.x+" latitude:"+p2.y+"<br>");
+
+</script>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Example of Google(WGS84),Congnamul map coordinator converting</title>
+<script type="text/javascript" src="lib/geocent.js"></script>
+<script type="text/javascript" src="lib/tmerc.js"></script>
+<script type="text/javascript" src="lib/cscs.js"></script>
+<SCRIPT type="text/javascript" src="lib/defs/GOOGLE_WGS84.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="lib/defs/KOREA_CENTER_TM_3param.js"></SCRIPT>
+
+<script type="text/javascript">
+
+// Define Coordinate system
+var TM_Congnamul = new CS(csList.KOREA_CENTER_TM_3param);
+var WGS84_google = new CS(csList.GOOGLE_WGS84);
+
+// GOOGLE_WGS84 -> KOREA_CENTER_TM_3param(Congnmaul map) test
+var longitude = 127.;
+var latitude = 38.;
+document.write("Google Map/Earth WGS84 - longitude:"+longitude+" latitude:"+latitude+"<br>");
+var p = new PT(longitude, latitude);
+cs_transform(WGS84_google,TM_Congnamul, p);
+p.x=p.x*2.5;
+p.y=p.y*2.5;
+document.write("-> Congnamul Map - X(E):"+p.x+" Y(N):"+p.y+"<br><br>");
+
+// KOREA_CENTER_TM_3param(Congnamul map) -> GOOGLE_WGS84 test
+var Xe = 500000.
+var Yn = 1250000.
+document.write("Congnamul Map - X(E):"+Xe+" Y(N):"+Yn+"<br>");
+Xe=Xe/2.5;
+Yn=Yn/2.5;
+var p2 = new PT(Xe,Yn); //(X_east,Y_north)
+cs_transform(TM_Congnamul, WGS84_google, p2);
+document.write("-> Google Map/Earth WGS84 - longitude:"+p2.x+" latitude:"+p2.y+"<br>");
+
+</script>
+<body>
+
+</body>
+</html>

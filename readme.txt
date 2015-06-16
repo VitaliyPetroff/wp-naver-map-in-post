@@ -36,7 +36,7 @@ php개발이 처음이라 버그가 있을 수 있습니다. 블로그나 메일
 
 = API 키는 어디서 얻죠? =
 
-네이버 OpenAPI (http://developer.naver.com/wiki/pages/OpenAPI)에 방문하셔서 검색 API와 지도 API를 발급 받으시면 됩니다.
+네이버 OpenAPI ( http://developer.naver.com/wiki/pages/OpenAPI )에 방문하셔서 검색 API와 지도 API를 발급 받으시면 됩니다.
 
 == Screenshots ==
 

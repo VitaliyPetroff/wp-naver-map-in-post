@@ -60,10 +60,16 @@ or
 
 == Changelog ==
 
+= 1.1 =
+* 보안상의 이슈로 file_get_contents 사용불가인 상황을 위해 함수변경(CURL 이용)
+
 = 1.0 =
 * 초기 베타 버전
 
 == Upgrade Notice ==
+
+= 1.1 =
+* 보안상의 이슈로 file_get_contents 사용불가인 상황을 위해 함수변경(CURL 이용)
 
 = 1.0 =
 * 초기 베타 버전

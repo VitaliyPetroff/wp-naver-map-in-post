@@ -3,7 +3,7 @@
 /*
    * Plugin Name: WP Naver Map in Post
    * Description: Add a naver map to your post
-   * Version: 1.0
+   * Version: 1.1
    * Author: Alghost
    * Author URI: http://blog.alghost.co.kr
    */

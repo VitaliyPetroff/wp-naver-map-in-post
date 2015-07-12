@@ -7,6 +7,7 @@ Tested up to: 4.2.2
 Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Version 1.1
 
 검색  API/지도 API를 이용하여 네이버 지도를 손쉽게 추가할 수 있도록 도와주는 플러그인입니다.
 
